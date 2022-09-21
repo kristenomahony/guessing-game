@@ -1,0 +1,53 @@
+body {
+    background-color: black;
+    color: #1F51FF;
+    text-align: center;
+    justify-content: center;
+}
+.game {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    overflow: auto;
+    
+}
+.title {
+    margin:20px;
+    color: #EA00FF;
+    font-size: 50px;
+}
+button {
+    background-color: black;
+    color: #1F51FF;
+    border: 2px solid #1F51FF;
+    border-radius: 10px;
+    width:10vw;
+    height:10vh;
+    margin:10px;
+    font-size: 50px;
+    padding-bottom: 15px;
+}
+.letters {
+    width: 100%;
+    
+    
+}
+.lives{
+    margin: 20px;
+    color: #EA00FF;
+    font-size: 40px;
+}
+.answer {
+    font-size: 50px;;
+    margin: 20px;
+    letter-spacing: 10px;
+    color:#EA00FF;
+}
+.play button{
+    width: 200px;
+    font-size: 40px;
+    border: none;
+}
+.feedback {
+    font-size: 25px;
+}

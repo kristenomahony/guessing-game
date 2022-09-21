@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>trivia-game</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+   
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+   
+    <div class="game">
+        <div class="title">GUESS A LETTER....</div>
+        <div class="letters">
+            <button id="a" name="a" type="submit" >a</button>
+            <button id="b" name="b" type="submit" >b</button>
+            <button id="c" ncme="c" type="submit" >c</button>
+            <button id="d" name="d" type="submit" >d</button>
+            <button id="e" name="e" type="submit">e</button>
+            <button id="f" name="f" type="submit" >f</button>
+            <button id="g" name="g" type="submit" >g</button>
+            <button id="h" name="h" type="submit" >h</button>
+            <button id="i" name="i" type="submit" >i</button>
+            <button id="j" name="j" type="submit" >j</button>
+            <button id="k" name="k" type="submit" >k</button>
+            <button id="l" name="l" type="submit" >l</button>
+            <button id="m" name="m" type="submit" >m</button>
+            <button id="n" name="n" type="submit" >n</button>
+            <button id="o" name="o" type="submit" >o</button>
+            <button id="p" name="p" type="submit" >p</button>
+            <button id="q" name="q" type="submit" >q</button>
+            <button id="r" name="r" type="submit" >r</button>
+            <button id="s" name="s" type="submit" >s</button>
+            <button id="t" name="t" type="submit" >t</button>
+            <button id="u" name="u" type="submit" >u</button>
+            <button id="v" name="v" type="submit" >v</button>
+            <button id="w" name="w" type="submit" >w</button>
+            <button id="x" name="x" type="submit" >x</button>
+            <button id="y" name="y" type="submit" >y</button>
+            <button id="z" name="z" type="submit" >z</button>
+        </div>    
+    <div id="lives" class="lives"></div>
+    <div id="feedback" class="feedback"></div>
+    <div id="answer" class="answer"></div>
+    <div class="play">
+        <button id="play_again" type="submit"></button>
+    </div>
+    </div>
+    <pyscript>
+
+    </pyscript>
+    <py-script>
+import random
+
+lives_left = 10
+guessed_letters = []                  
+word_list = ["horse", "snake", "tiger", "mouse", "bear", "camel","zebra", "cat","whale", "eagle","pig", "sheep", "frog","panda","llama", "dog"]
+
+a = Element("a")
+b = Element("b")
+c = Element("c")
+d = Element("d")
+e = Element("e")
+f = Element("f")
+g = Element("g")
+h = Element("h")
+i = Element("i")
+j = Element("j")
+k = Element("k")
+l = Element("l")
+m = Element("m")
+n = Element("n")
+o = Element("o")
+p = Element("p")
+q = Element("q")
+r = Element("r")
+s = Element("s")
+t = Element("t")
+u = Element("u")
+v = Element("v")
+w = Element("w")
+x = Element("x")
+y = Element("y")
+z = Element("z")
+
+lives = Element("lives")
+feedback = Element("feedback")
+answer = Element("answer")                         
+play_again_div = Element("play")
+play_again_btn = Element("play_again")
+
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+display = []
+for _ in range(word_length):
+    display += '_'
+
+answer.element.innerText = "".join(display)
+
+
+empty_space = "_"
+
+def check_a(*args): 
+
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "a" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "a":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("a")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                
+                play_again_btn.element.innerText = "Play again?"
+        if "a" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("a")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+
+def check_b(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "b" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "b":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("b")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                
+                play_again_btn.element.innerText = "Play again?"
+        if "b" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("b")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_c(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "c" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "c":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("c")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+               
+                play_again_btn.element.innerText = "Play again?"
+        if "c" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("c")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+        
+def check_d(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "d" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "d":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("d")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                
+                play_again_btn.element.innerText = "Play again?"
+        if "d" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("d")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_e(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "e" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "e":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("e")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "e" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("e")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_f(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "f" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "f":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("f")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "f" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("f")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_g(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "g" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "g":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("g")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "g" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("g")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_h(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "h" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "h":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("h")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "h" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("h")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_i(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "i" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "i":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("i")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "i" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("i")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_j(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "j" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "j":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("j")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "j" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("j")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_k(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "k" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "k":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("k")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "k" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("k")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_l(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    
+    if "l" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "l":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("l")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "l" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("l")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_m(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "m" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "m":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("m")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "m" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("m")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_n(*args):
+     
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "n" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "n":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("n")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "n" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("n")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_o(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "o" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "o":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("o")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "o" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("o")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_p(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "p" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "p":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("p")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                
+                play_again_btn.element.innerText = "Play again?"
+        if "p" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("p")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_q(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "q" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "q":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("q")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "q" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("q")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_r(*args):  
+    
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "r" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "r":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("r")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "r" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("r")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_s(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "s" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "s":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("s")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "s" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("s")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_t(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "t" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "t":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("t")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "t" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("t")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_u(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "u" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "u":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("u")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "u" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("u")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+        
+def check_v(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "v" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "v":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("v")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "v" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("v")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_w(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "w" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "w":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("w")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "w" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("w")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_x(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "x" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "x":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("x")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "x" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("x")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_y(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "y" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "y":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("y")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+        
+                play_again_btn.element.innerText = "Play again?"
+        if "y" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("y")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"
+
+def check_z(*args):   
+    global chosen_word
+    global word_length
+    global display
+    global lives_left
+    if "z" not in guessed_letters:
+        for position in range(word_length):
+            letter = chosen_word[position]
+            if letter == "z":
+                display[position] = letter
+                answer.element.innerText = "".join(display)
+                feedback.element.innerText = "Yay you got it right!"
+                lives.element.innerText = f"Lives: {lives_left}"
+                guessed_letters.append("z")
+            if empty_space not in display:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                
+                play_again_btn.element.innerText = "Play again?"
+        if "z" not in chosen_word:
+            lives_left -= 1
+            lives.element.innerText = f"Lives: {lives_left}"
+            feedback.element.innerText = "Nope, that's not right!"
+            guessed_letters.append("z")
+            if lives_left == 0:
+                feedback.element.innerText = "Game over!"
+                lives.add_class("hidden")
+                answer.element.innerText = chosen_word
+                play_again_btn.element.innerText = "Play again?"
+    else:
+        feedback.element.innerText = "You guessed that already"   
+
+def reset(*args):
+    global word_list
+    global display
+    global lives_left
+    global chosen_word
+    global guessed_letters
+    lives_left = 10
+    
+    guessed_letters.clear()
+    display.clear()
+    feedback.element.innerText = ""
+    lives.element.innerText = f"Lives: {lives_left}"
+    
+    play_again_btn.element.innerText = ""
+    lives.remove_class("hidden")
+    chosen_word = random.choice(word_list)
+    word_length = len(chosen_word)
+    
+    for _ in range(word_length):
+        display += '_'
+    answer.element.innerText = "".join(display)
+    print(len(guessed_letters))
+    
+a.element.onclick = check_a
+b.element.onclick = check_b
+c.element.onclick = check_c
+d.element.onclick = check_d
+e.element.onclick = check_e
+f.element.onclick = check_f
+g.element.onclick = check_g
+h.element.onclick = check_h
+i.element.onclick = check_i
+j.element.onclick = check_j
+k.element.onclick = check_k
+l.element.onclick = check_l
+m.element.onclick = check_m
+n.element.onclick = check_n
+o.element.onclick = check_o
+p.element.onclick = check_p
+q.element.onclick = check_q
+r.element.onclick = check_r
+s.element.onclick = check_s
+t.element.onclick = check_t
+u.element.onclick = check_u
+v.element.onclick = check_v
+w.element.onclick = check_w
+x.element.onclick = check_x
+y.element.onclick = check_y
+z.element.onclick = check_z
+play_again_btn.element.onclick = reset
+    </py-script>
+</body>
